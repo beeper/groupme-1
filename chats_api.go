@@ -53,7 +53,7 @@ func (c *Client) IndexChats(ctx context.Context, req *IndexChatsQuery) ([]*Chat,
 
 	return resp, nil
 }
-func (c *Client) IndexAllRelations(ctx context.Context) ([]*User, error) {
+func (c *Client) IndexRelations(ctx context.Context) ([]*User, error) {
 	httpReq, err := http.NewRequest("GET", "https://api.groupme.com/v4"+"/relationships", nil)
 	if err != nil {
 		return nil, err
