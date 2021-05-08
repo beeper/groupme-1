@@ -53,3 +53,23 @@ func (c *Client) IndexChats(ctx context.Context, req *IndexChatsQuery) ([]*Chat,
 
 	return resp, nil
 }
+func (c *Client) IndexAllRelations(ctx context.Context) ([]*User, error) {
+	httpReq, err := http.NewRequest("GET", "https://api.groupme.com/v4"+"/relationships", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	URL := httpReq.URL
+	query := URL.Query()
+
+	query.Set("include_blocked", "true")
+	URL.RawQuery = query.Encode()
+
+	var resp []*User
+	err = c.doWithAuthToken(ctx, httpReq, &resp)
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
