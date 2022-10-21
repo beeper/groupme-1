@@ -1,4 +1,4 @@
-module github.com/densestvoid/groupme
+module github.com/beeper/groupme-lib
 
 go 1.15
 

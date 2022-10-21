@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/densestvoid/groupme"
+	"github.com/beeper/groupme-lib"
 )
 
 // This is not a real token. Please find yours by logging

@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/densestvoid/groupme"
 	"github.com/karmanyaahm/wray"
+
+	"github.com/beeper/groupme-lib"
 )
 
 // This is not a real token. Please find yours by logging
@@ -14,7 +15,7 @@ import (
 
 var authorizationToken = "ABCD"
 
-//This adapts your faye library to an interface compatible with this library
+// This adapts your faye library to an interface compatible with this library
 type FayeClient struct {
 	*wray.FayeClient
 }
@@ -30,7 +31,7 @@ func (fc FayeClient) WaitSubscribe(channel string, msgChannel chan groupme.PushM
 	}()
 }
 
-//for authentication, specific implementation will vary based on faye library
+// for authentication, specific implementation will vary based on faye library
 type AuthExt struct{}
 
 func (a *AuthExt) In(wray.Message) {}
@@ -38,7 +39,7 @@ func (a *AuthExt) Out(m wray.Message) {
 	groupme.OutMsgProc(m)
 }
 
-//specific to faye library
+// specific to faye library
 type fayeLogger struct{}
 
 func (l fayeLogger) Infof(f string, a ...interface{}) {
@@ -120,7 +121,7 @@ func main() {
 	<-make(chan (struct{}))
 }
 
-//Following example handlers print out all data
+// Following example handlers print out all data
 type Handler struct {
 	User *groupme.User
 }
